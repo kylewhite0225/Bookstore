@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "Book.h"
 #include "BookstoreManager.h"
 
@@ -13,15 +14,21 @@ int main() {
     //insert 4 books
     string title, authors, publisher;
     int isbn;
+    string isbnStr;
     for(int i=0;i<4;i++){
         cout << "Enter book title: ";
-        cin>>title;
+        // cin>>title;
+        getline(cin, title);
         cout << "Enter authors: ";
-        cin>>authors;
+        // cin>>authors;
+        getline(cin, authors);
         cout << "Enter isbn: "; 
-        cin>>isbn;
+        getline(cin, isbnStr);
         cout << "Enter publisher: ";
-        cin>>publisher;
+        // cin>>publisher;
+        getline(cin, publisher);
+        stringstream convert(isbnStr);
+        convert >> isbn;
         Book aBook(title, isbn, authors, publisher);
         bookstoreManager.insert(aBook); 
         cout<<endl;
@@ -31,14 +38,14 @@ int main() {
     bookstoreManager.print();
 
     //search for books
-    cout<< "Searching…" <<endl;
+    cout<< "Searching..." <<endl;
     cout<<"ISBN:";
     cin>>isbn;
     Book b2(isbn);
     bookstoreManager.search(b2);
 
     //remove a book
-    cout<< "Removing…" <<endl;
+    cout<< "Removing..." <<endl;
     cout<<"ISBN:";
     cin>>isbn;
     Book b1(isbn);
