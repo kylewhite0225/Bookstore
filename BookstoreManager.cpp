@@ -2,10 +2,6 @@
 #include "BookstoreManager.h"
 using namespace std;
 
-void BookstoreManager::sortBookstore() {
-
-}
-
 int BookstoreManager::binarySearch(Book* arr, int l, int r, int ISBN)
 { 
     if (r >= l) { 
@@ -90,19 +86,12 @@ void BookstoreManager::insert(Book b) {
         delete[] pArr;
         pArr = newArr;
         this->size = size*2;
-        
-        // pArr[entries] = b;
         insertSorted(this->pArr, this->entries, b, this->size);
-
-        
-        
         this->entries++;
     } else {
-        //pArr[entries] = b;
         insertSorted(this->pArr, this->entries, b, this->size);
         this->entries++;
     }
-    // this->sort();
 }
 
 void BookstoreManager::remove(Book remove) {
@@ -126,14 +115,32 @@ void BookstoreManager::remove(Book remove) {
 }
 
 void BookstoreManager::removePublisher(string removePub) {
-    cout << "removing publisher" << endl;
-    // Loop through array and copy all NON-MATCHING into a new array
-    // Delete the old array
-    // Keep counter of how many items are copied, then set that to entries. 
+    // Create a new Book* array to copy non-matching items into
+    Book* newArr = new Book[this->size];
+    // Create newEntries to keep track of new index as items are copied over
+    int newEntries = 0;
+    // Loop through existing array
+    for (int i = 0; i < entries; i++) {
+        string currentPublisher = pArr[i].getPublisher();
+        // if the currentPublisher value does NOT match removePub, it gets copied
+        // into the new array
+        if (currentPublisher != removePub) {
+            newArr[newEntries] = this->pArr[i];
+            newEntries++;
+        }
+    }
+    // Delete old array
+    delete[] pArr;
+    // Assign pArr to the new array
+    pArr = newArr;
+    // Assign entries to newEntries;
+    this->entries = newEntries;
 }
 
 void BookstoreManager::search(Book b) {
     int ISBN = b.getISBN();
+    // Driver code for binarySearch function. Returns index of found item, otherwise returns
+    // -1 if not found.
     int result = binarySearch(this->pArr, 0, this->entries, ISBN);
     if (result == -1) {
         cout << "Not found." << endl;

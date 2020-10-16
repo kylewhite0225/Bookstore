@@ -16,7 +16,6 @@ private:
     Book* pArr;
     int size;
     int entries;
-    void sortBookstore();
     int binarySearch(Book* arr, int l, int r, int ISBN);
     void insertSorted(Book* arr, int entries, Book b, int size);
     
