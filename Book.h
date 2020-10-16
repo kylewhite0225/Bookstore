@@ -1,7 +1,6 @@
 #ifndef BOOK
 #define BOOK
 
-
 #include <string>
 using namespace std;
 

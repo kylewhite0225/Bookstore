@@ -2,8 +2,15 @@
 #include <sstream>
 #include "Book.h"
 #include "BookstoreManager.h"
-
 using namespace std;
+
+/*
+Name: main.cpp
+Author: Kyle White
+Date: 10/16/2020
+Description: The main method provides some test functionality for the BookstoreManager and Book
+classes.
+*/
 
 int main() { 
     BookstoreManager bookstoreManager;
@@ -68,6 +75,3 @@ int main() {
     bookstoreManager.listSize();
 
 }
-
-// assume ISBN is a unique value
-// delete all ISBN that are duplicates
