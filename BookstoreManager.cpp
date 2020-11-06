@@ -140,6 +140,7 @@ void BookstoreManager::remove(Book remove) {
             pArr[j] = pArr[j+1];
         }
         entries--;
+        cout << endl;
     } else if (i == entries) {
         cout << "Not found." << endl;
     }
