@@ -97,6 +97,15 @@ void BookstoreManager::print() {
 // The insert function uses the helper function insertSorted to insert a new element 
 // in sorted order into the array. It increases capacity as needed.
 void BookstoreManager::insert(Book b) {
+    // Use binarySearch function to search for currently existing ISBNs.
+    // Returns index of found item, otherwise returns -1 if not found.
+    int ISBN = b.getISBN();
+    int result = binarySearch(this->pArr, 0, this->entries, ISBN);
+    if (result != -1) {
+        cout << "Error: ISBN already exists in bookstore." << endl;
+        return;
+    }
+    
     // If the array is at maximum capacity, create a new array with size*2
     // then loop through original array and add the new element with insertSorted function.
     if (this->entries >= this->size) {
