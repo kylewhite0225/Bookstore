@@ -1,4 +1,4 @@
-#CS300 - Data Structures - A Bookstore Application
+# CS300 - Data Structures - A Bookstore Application
 
 The class `Book` includes the following members:
 + title, 
